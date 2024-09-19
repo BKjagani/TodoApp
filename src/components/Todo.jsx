@@ -10,11 +10,12 @@ function Todo() {
           <div className="col-md-2 box"></div>
           <button
             type="button"
-            className="btn btn-primary btn col-md-2 box add-box"
+            className="btn btn-info btn col-md-2 box add-box"
             data-bs-toggle="modal"
-            data-bs-target="#exampleModal"
+            data-bs-target="#staticBackdrop"
           >
-            Launch demo modal
+            <h2>Add Todo</h2>
+            <i class="bi bi-patch-plus" id="add-todo-icon"></i>
           </button>
         </div>
       </div>

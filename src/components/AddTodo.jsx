@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import { toast } from "react-toastify";
+import { addTodo } from "../server/server";
 
 function AddTodo() {
   const [todo, setTodo] = useState({
@@ -13,8 +15,9 @@ function AddTodo() {
     setTodo((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
+    toast.dismiss();
     if (
       todo.title &&
       todo.description &&
@@ -22,9 +25,18 @@ function AddTodo() {
       todo.dueDate &&
       todo.priority
     ) {
-      console.log(todo);
+      toast.success("Todo Added Successfully");
+      addTodo({...todo, completedDate : "", status : ""})
+      document.getElementById("closeModalButton").click();
+      setTodo({
+        title: "",
+        description: "",
+        priority: "",
+        dueDate: "",
+        category: "",
+      });
     } else {
-      console.log(" miss... ");
+      toast.error("Please full fill the details");
     }
   }
 
@@ -32,9 +44,11 @@ function AddTodo() {
     <>
       <div
         className="modal fade"
-        id="exampleModal"
+        id="staticBackdrop"
         tabIndex="-1"
-        aria-labelledby="exampleModalLabel"
+        data-bs-keyboard="false"
+        data-bs-backdrop="static"
+        aria-labelledby="staticBackdropLabel"
         aria-hidden="true"
       >
         <div className="modal-dialog">
@@ -116,6 +130,7 @@ function AddTodo() {
                 type="button"
                 className="btn btn-outline-secondary"
                 data-bs-dismiss="modal"
+                id="closeModalButton"
               >
                 Close
               </button>

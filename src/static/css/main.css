@@ -7,3 +7,7 @@ body{
 .modal-body{
     background-color: rgb(227, 238, 238);
 }
+
+#add-todo-icon{
+    font-size: 50px;
+}

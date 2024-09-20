@@ -1,15 +1,22 @@
-import { createSlice } from "@reduxjs/toolkit";
+    import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+    import axios from "axios";
 
-const todoSclice = createSlice({
-    name : "todo",
-    initialState : [],
-    reducers : {
-        addTodo : (state, action) => {
-            state.push(action.payload)
+    export const fetchTodos = createAsyncThunk("todos/fetchTodos", async () => {
+        const response = await axios.get("http://localhost:3333/todos");
+        return response.data;
+    })
+
+    const todoSclice = createSlice({
+        name : "todo",
+        initialState : [],
+        reducers : {},
+        extraReducers : (builder) => {
+            builder.addCase(fetchTodos.fulfilled, (state, action) => {
+              return action.payload
+            })
         }
-    }
-})
+    })
 
 
-export const {addTodo} = todoSclice.actions
-export default todoSclice.reducer
+    // export const {addTodo} = todoSclice.actions
+    export default todoSclice.reducer

@@ -1,12 +1,45 @@
 
 .box{
-    height: 250px;
+    height: 300px;
     background-color: rgb(187, 199, 198);
     width: 24%;
     margin-right:10px;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     border-radius: 10px;
+    transition: 0.5s;
+
 }
+
+.badge-custom {
+    background-color: rgb(240, 204, 234);
+    color: black;
+    padding: 0px 10px;
+    border-radius: 5px;
+    right: 0;
+    top: 0; 
+}
+
+.box:hover{
+    transform: translateY(5px);
+    cursor: pointer;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.todo-description{
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.low-bg {
+    background-color: #d1f7d6; /* light green for low priority */
+  }
+  
+  .medium-bg {
+    background-color: #f9e79f; /* yellow for medium priority */
+  }
+  
+  .high-bg {
+    background-color: #f5b7b1; /* light red for high priority */
+  }
 
 .box-group{
     display: flex;
@@ -15,8 +48,13 @@
 }
 
 .add-box{
-    background-color: rgb(146, 196, 236);
-    color: rgb(82, 23, 138);
+    /* background-color: rgb(146, 196, 236); */
+    background-color: #34a58ea8;
+    color: rgb(6, 85, 45);
+}
+
+.add-box:hover{
+    background-color: #1ABC9C; /* Slightly darker shade on hover */
 }
 
 

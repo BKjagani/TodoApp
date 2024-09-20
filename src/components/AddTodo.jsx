@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { toast } from "react-toastify";
 import { addTodo } from "../server/server";
 
-function AddTodo() {
+function AddTodo({refreshTodos}) {
   const [todo, setTodo] = useState({
     title: "",
     description: "",
@@ -26,7 +26,10 @@ function AddTodo() {
       todo.priority
     ) {
       toast.success("Todo Added Successfully");
-      addTodo({...todo, completedDate : "", status : ""})
+      const currentDate = new Date();
+      const formattedDate = currentDate.toISOString().slice(0, 10);
+      addTodo({...todo,createdAt : formattedDate, completedDate : "", status : ""})
+      refreshTodos();
       document.getElementById("closeModalButton").click();
       setTodo({
         title: "",
@@ -91,9 +94,9 @@ function AddTodo() {
                   onChange={handleChange}
                 >
                   <option>--Priority--</option>
-                  <option value="low">Low</option>
-                  <option value="medium">Medium</option>
-                  <option value="high">High</option>
+                  <option value="low">Low 🟢</option>
+                  <option value="medium">Medium 🟡</option>
+                  <option value="high">High 🔴</option>
                 </select>
                 <select
                   className="form-select mb-3"

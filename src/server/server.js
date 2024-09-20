@@ -11,4 +11,12 @@ const addTodo = async(todo) => {
 }
 
 
-export {addTodo}
+const updateTodo = async (id, obj) => {
+    try {
+        return await axios.put(`${API}/${id}`, obj)
+    } catch (error) {
+        console.log("Error While add todo", error)
+    }
+}
+
+export {addTodo, updateTodo}
